@@ -1,35 +1,95 @@
-import { createSignal } from 'solid-js'
-import solidLogo from './assets/solid.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { createEffect, createSignal } from "solid-js";
+import "./App.css";
 
 function App() {
-  const [count, setCount] = createSignal(0)
+  const [pokemonImg, setPokemonImg] = createSignal("");
+  const [pokemonBackImg, setPokemonBackImg] = createSignal("");
+  const [joke, setJoke] = createSignal<Joke>({
+    setup: "",
+    punchline: "",
+  });
+
+  // responseをHTMLにのせたいかたちに整形する
+
+  const getPokemonFrontImg = async () => {
+    // ここでAPIをたたく
+    const id = getRandomInt(1, 151);
+    const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
+
+    const body: any = await response.json();
+
+    const image = body.sprites.front_default;
+    console.log(image);
+    setPokemonImg(image);
+  };
+
+  function getRandomInt(min: number, max: number) {
+    const minCeiled = Math.ceil(min);
+    const maxFloored = Math.floor(max);
+    return Math.floor(Math.random() * (maxFloored - minCeiled) + minCeiled); // The maximum is exclusive and the minimum is inclusive
+  }
+
+  const getPokemonBackImg = async () => {
+    // ここでAPIをたたく
+    const id = getRandomInt(1, 151);
+    const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`);
+
+    const body: any = await response.json();
+
+    const image = body.sprites.back_default;
+    console.log(image);
+    setPokemonBackImg(image);
+  };
+
+  const getJoke = async () => {
+    // ここでAPIをたたく
+    const response = await fetch(
+      "https://official-joke-api.appspot.com/jokes/programming/random"
+    );
+
+    const body: any = await response.json();
+
+    console.log(body)
+
+    const joke: Joke = {
+      setup: body[0].setup,
+      punchline: body[0].punchline,
+    };
+
+    setJoke(joke);
+  };
+
+  createEffect(() => {
+    getPokemonFrontImg();
+    getPokemonBackImg();
+    getJoke();
+  });
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} class="logo" alt="Vite logo" />
-        </a>
-        <a href="https://solidjs.com" target="_blank">
-          <img src={solidLogo} class="logo solid" alt="Solid logo" />
-        </a>
-      </div>
-      <h1>Vite + Solid</h1>
+      <h1>JOKE BATTLE!!</h1>
       <div class="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count()}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
+        <div class="setup">
+          <div class="balloon1-right">
+            <p>{joke().setup}</p>
+          </div>
+          <img class="pokemon-img__front" src={pokemonImg()} />
+        </div>
+        <div class="punchline">
+          <img class="pokemon-img__back" src={pokemonBackImg()} />
+          <div class="balloon1-left">
+            <p>{joke().punchline}</p>
+          </div>
+        </div>
       </div>
-      <p class="read-the-docs">
-        Click on the Vite and Solid logos to learn more
-      </p>
+      <a href="/">更新</a>
     </>
-  )
+  );
 }
 
-export default App
+type Joke = {
+  setup: string;
+  punchline: string;
+};
+
+export default App;
