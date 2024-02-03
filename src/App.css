@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=DotGothic16&display=swap");
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
@@ -25,3 +27,174 @@
 .read-the-docs {
   color: #888;
 }
+
+.card {
+  margin: 0 auto;
+  width: 480px;
+  height: 224px;
+  border: 1px solid #61dafbaa;
+  background: no-repeat center/cover url("../public/background.png");
+  position: relative;
+}
+
+.pokemon-img__front {
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  top: 8px;
+  right: 30px;
+
+  /* アニメーションの名前 */
+  animation-name: UpDown;
+  /* アニメーションの１回分の長さ */
+  animation-duration: 0.5s;
+  /* アニメーションの回数 */
+  animation-iteration-count: infinite;
+  /* アニメーションの進行具合 */
+  animation-timing-function: ease-in-out;
+  /* アニメーション再生の向き */
+  animation-direction: alternate;
+}
+/* アニメーションの設定 */
+@keyframes UpDown {
+  /* 開始地点 */
+  0% {
+    /* Y軸0px */
+    transform: translateY(0);
+  }
+  /* 終了地点 */
+  100% {
+    /* Y軸50px */
+    transform: translateY(5px);
+  }
+}
+
+.pokemon-img__back {
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  top: 120px;
+  left: 90px;
+
+  /* アニメーションの名前 */
+  animation-name: UpDown;
+  /* アニメーションの１回分の長さ */
+  animation-duration: 0.5s;
+  /* アニメーションの回数 */
+  animation-iteration-count: infinite;
+  /* アニメーションの進行具合 */
+  animation-timing-function: ease-in-out;
+  /* アニメーション再生の向き */
+  animation-direction: alternate;
+}
+/* アニメーションの設定 */
+@keyframes UpDown {
+  /* 開始地点 */
+  0% {
+    /* Y軸0px */
+    transform: translateY(0);
+  }
+  /* 終了地点 */
+  100% {
+    /* Y軸50px */
+    transform: translateY(5px);
+  }
+}
+.setup-text {
+  position: absolute;
+  left: 20px;
+  width: 240px;
+  background-color: #ffffff;
+  color: #000000;
+  font-family: "DotGothic16", sans-serif;
+}
+
+.punchline-text {
+  position: absolute;
+  bottom: 40px;
+  left: 300px;
+  width: 240px;
+  background-color: #ffffff;
+  font-family: "DotGothic16", sans-serif;
+}
+
+.balloon1-right {
+  position: absolute;
+  left: 20px;
+  width: 240px;
+  color: #000000;
+  /* position: relative; */
+  display: inline-block;
+  margin: 1.5em 15px 1.5em 0;
+  padding: 7px 10px;
+  min-width: 120px;
+  max-width: 100%;
+  color: #555;
+  font-size: 16px;
+  background: #e0edff;
+}
+
+.balloon1-right:before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  margin-top: -15px;
+  border: 15px solid transparent;
+  border-left: 15px solid #e0edff;
+}
+
+.balloon1-right p {
+  margin: 0;
+  padding: 0;
+}
+
+.balloon1-left {
+  position: absolute;
+  bottom: 40px;
+  left: 260px;
+  width: 240px;
+  /* position: relative; */
+  display: inline-block;
+  margin: 1.5em 0 1.5em 15px;
+  padding: 7px 10px;
+  min-width: 120px;
+  max-width: 100%;
+  color: #555;
+  font-size: 16px;
+  background: #e0edff;
+}
+
+.balloon1-left:before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: -30px;
+  margin-top: -15px;
+  border: 15px solid transparent;
+  border-right: 15px solid #e0edff;
+}
+
+.balloon1-left p {
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  font-family: "DotGothic16", sans-serif;
+}
+
+a {
+  font-size: 40px;
+  font-family: sans-serif;
+  text-decoration: none;
+  color: black;
+  margin-top: 10px;
+  background-color: white;
+  border-radius: 10px;
+  padding: 10px 200px;
+  display: inline-block;
+  font-family: "DotGothic16", sans-serif;
+}
+
+/* https://saruwakakun.com/html-css/reference/speech-bubble */
