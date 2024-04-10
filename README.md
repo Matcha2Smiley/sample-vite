@@ -10,4 +10,3 @@
 * チーム開発
     * 初めてのチーム開発でとても楽しく制作ができました
 
-[TypeScriptで3時間ハッカソン](https://experience-learn.connpass.com/event/308156/)
